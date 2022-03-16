@@ -13,24 +13,30 @@ let readSwitches = document.querySelectorAll(".isRead");
 let myBooks = [];
 
 
-function bookObject(title, author, description, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.description = description;
-    this.pages = pages;
-    this.isRead = isRead;
-}
+class bookObject {
 
-bookObject.prototype.toggleRead = function() {
-    if (!this.isRead) {
-        this.isRead = true;
-    } else {
-        this.isRead = false;
+    constructor(title, author, description, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+
+    toggleRead() {
+        if (!this.isRead) {
+            this.isRead = true;
+        } else {
+            this.isRead = false;
+        }
     }
 }
 
 addBtn.addEventListener("click", function() {
-    if (bookTitle.value.length === 0 || bookAuthor.value.length === 0 || bookDesc.value.length === 0 || bookPages.value.length === 0) {
+    if (bookTitle.value.length === 0 ||
+        bookAuthor.value.length === 0 ||
+        bookDesc.value.length === 0 ||
+        bookPages.value.length === 0) {
         alert("Make sure all fields are entered correctly!");
     } else {
         const book = new bookObject(bookTitle.value, bookAuthor.value, bookDesc.value, bookPages.value, readStatus.checked);
